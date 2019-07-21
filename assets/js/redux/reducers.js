@@ -15,7 +15,7 @@ const selectedIdReducer = (subredditId = "reactjs", action) => {
 }
 
 const dataBySubredditReducer = (dataBySubreddit = {}, action) => {
-  if (!!action.subredditId) {
+  if (action.subredditId) {
     // If the action has a subredditId, let's run the reducer for that subreddit.
     let subreddit = dataBySubreddit[action.subredditId]
     subreddit = subredditReducer(subreddit, action)

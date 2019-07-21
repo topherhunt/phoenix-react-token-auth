@@ -43,8 +43,8 @@ export const FETCH_POSTS_SUCCESS = (subredditId, json) => {
   }
 }
 
-export const FETCH_POSTS_FAILURE = (subredditId) => {
-  return {type: "FETCH_POSTS_FAILURE", subredditId}
+export const FETCH_POSTS_FAILURE = (subredditId, error) => {
+  return {type: "FETCH_POSTS_FAILURE", subredditId, error}
 }
 
 //
@@ -60,14 +60,10 @@ let helpers = {
         return response.json()
       })
       .then((json) => {
-        if (true) {
-          dispatch(FETCH_POSTS_SUCCESS(subredditId, json))
-        } else {
-          dispatch(FETCH_POSTS_FAILURE(subredditId))
-        }
+        dispatch(FETCH_POSTS_SUCCESS(subredditId, json))
       })
       .catch((error) => {
-        dispatch(FETCH_POSTS_FAILURE(subredditId))
+        dispatch(FETCH_POSTS_FAILURE(subredditId, error))
       })
   }
 }

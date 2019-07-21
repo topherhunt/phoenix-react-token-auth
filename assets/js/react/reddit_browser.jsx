@@ -30,7 +30,7 @@ class RedditBrowser extends React.Component {
     return <a href="#"
       style={{
         margin: "0 5px 0 5px",
-        fontWeight: (id == this.props.selectedId ? "bold" : "normal")
+        fontWeight: (id === this.props.selectedId ? "bold" : "normal")
       }}
       onClick={(e) => {
         e.preventDefault()
@@ -64,6 +64,7 @@ class RedditBrowser extends React.Component {
             this.props.refreshSubreddit(id)
           }}
         >refresh</a>
+      default: throw(`Unknown status: ${subreddit.status}`)
     }
   }
 
@@ -80,6 +81,7 @@ class RedditBrowser extends React.Component {
         </div>
       case "failure":
         return <div style={{color: "red"}}>Error loading posts. Try refreshing.</div>
+      default: throw(`Unknown status: ${subreddit.status}`)
     }
   }
 
@@ -88,7 +90,9 @@ class RedditBrowser extends React.Component {
       style={{border: "1px solid #eee", borderRadius: "5px", margin: "5px 0", padding: "5px"}}
     >
       <div style={{fontSize: "110%", fontWeight: "bold"}}>
-        <a href={"https://www.reddit.com" + post.permalink} target="_blank">
+        <a href={"https://www.reddit.com" + post.permalink}
+          target="_blank" rel="noopener noreferrer"
+        >
           {post.title}
         </a>
       </div>

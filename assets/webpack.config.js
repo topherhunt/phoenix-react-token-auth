@@ -22,6 +22,12 @@ module.exports = (env, options) => ({
   module: {
     rules: [
       {
+        enforce: "pre", // eslint must run before any babel transpilation stuff
+        test: /\.jsx?$/,
+        exclude: /(deps|node_modules)/, // Exclude Elixir deps from linter
+        loader: "eslint-loader"
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
