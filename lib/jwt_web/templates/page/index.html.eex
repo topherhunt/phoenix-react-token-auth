@@ -1,3 +1,5 @@
 <h1>Title</h1>
 
 <div class="alert alert-success">An alert</div>
+
+<%= ReactPhoenix.ClientSide.react_component("Components.Root", %{ready: "Yes sir!"}) %>
