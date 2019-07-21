@@ -1,19 +1,15 @@
 import React from "react"
-import PropTypes from "prop-types"
+import { Provider } from "react-redux"
+import store from "../redux/store"
+import RedditBrowserContainer from "./reddit_browser_container.jsx"
 
 class Root extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
   render() {
-    return <div>Hello from React! Readiness status: {this.props.ready}</div>
+    return <Provider store={store}>
+      <h3>Explore Reddit posts</h3>
+      <RedditBrowserContainer />
+    </Provider>
   }
-}
-
-Root.propTypes = {
-  ready: PropTypes.string.isRequired
 }
 
 export default Root
