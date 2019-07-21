@@ -26,6 +26,8 @@ config :jwt, JwtWeb.Endpoint,
       "--mode",
       "development",
       "--watch-stdin",
+      "--color",
+      "--display-error-details",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]
@@ -58,7 +60,7 @@ config :jwt, JwtWeb.Endpoint,
 config :jwt, JwtWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/.*(js|css|scss|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/jwt_web/{live,views}/.*(ex)$",
       ~r"lib/jwt_web/templates/.*(eex)$"

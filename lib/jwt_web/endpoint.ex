@@ -26,6 +26,10 @@ defmodule JwtWeb.Endpoint do
   plug Plug.RequestId
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
 
+  # Custom one-line request logging
+  # Must come before the session & router plugs.
+  plug JWTWeb.RequestLogger
+
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],

@@ -19,7 +19,7 @@ defmodule JwtWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: JwtWeb
+      use Phoenix.Controller, namespace: JwtWeb, log: false
 
       import Plug.Conn
       import JwtWeb.Gettext
