@@ -16,3 +16,6 @@ config :jwt, JwtWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+# Make bcrypt faster in tests
+config :bcrypt_elixir, log_rounds: 4

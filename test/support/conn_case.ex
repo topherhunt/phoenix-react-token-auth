@@ -20,6 +20,7 @@ defmodule JwtWeb.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
       alias JwtWeb.Router.Helpers, as: Routes
+      alias Jwt.Factory
 
       # The default endpoint for testing
       @endpoint JwtWeb.Endpoint

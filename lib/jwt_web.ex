@@ -23,6 +23,7 @@ defmodule JwtWeb do
 
       import Plug.Conn
       import JwtWeb.Gettext
+      import JwtWeb.AuthPlugs, only: [require_user: 2]
       alias JwtWeb.Router.Helpers, as: Routes
     end
   end
