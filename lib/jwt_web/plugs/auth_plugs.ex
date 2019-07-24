@@ -42,6 +42,8 @@ defmodule JwtWeb.AuthPlugs do
   end
 
   defp get_token(conn) do
+    # If the token is provided in the request header (the only option for now), we expect
+    # it to use the standard OAuth "Authorization: Bearer MY_TOKEN" format.
     header = Enum.find(conn.req_headers, fn({k, _v}) -> k == "authorization" end)
 
     if header do

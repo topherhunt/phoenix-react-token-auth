@@ -6,12 +6,12 @@ defmodule JwtWeb.Api.AuthController do
     case Accounts.authenticate_user(email, password) do
       {:ok, user} ->
         token = Accounts.new_token_for_user(user)
-        json(conn, %{"token" => token})
+        json(conn, %{"ok" => true, "token" => token})
 
       {:error, reason} ->
         conn
         |> put_status(401)
-        |> json(%{"error" => reason})
+        |> json(%{"ok" => false, "message" => login_failure_message(reason)})
     end
   end
 
@@ -22,9 +22,10 @@ defmodule JwtWeb.Api.AuthController do
         json(conn, %{"ok" => true, "token" => token})
 
       {:error, changeset} ->
+        IO.puts "error."
         conn
         |> put_status(422)
-        |> json(%{"errors" => summarize_errors(changeset)})
+        |> json(%{"ok" => false, "message" => registration_failure_message(changeset)})
     end
   end
 
@@ -32,7 +33,14 @@ defmodule JwtWeb.Api.AuthController do
   # Helpers
   #
 
-  defp summarize_errors(changeset) do
-    Enum.map(changeset.errors, fn({field, {msg, _}}) -> "#{field} #{msg}" end)
+  defp login_failure_message(reason) do
+    case reason do
+      :invalid_credentials -> "Your username or password is incorrect. Please try again."
+    end
+  end
+
+  defp registration_failure_message(changeset) do
+    errors = Enum.map(changeset.errors, fn({field, {msg, _}}) -> "#{field} #{msg}" end)
+    "Registration failed due to the following error(s): #{Enum.join(errors, ", ")}"
   end
 end

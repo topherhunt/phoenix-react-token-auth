@@ -1,13 +1,12 @@
 import React from "react"
 import { Provider } from "react-redux"
 import store from "../redux/store"
-import RedditBrowserContainer from "./reddit_browser_container.jsx"
+import MainContainer from "./main_container.jsx"
 
 class Root extends React.Component {
   render() {
     return <Provider store={store}>
-      <h3>Explore Reddit posts</h3>
-      <RedditBrowserContainer />
+      <MainContainer />
     </Provider>
   }
 }

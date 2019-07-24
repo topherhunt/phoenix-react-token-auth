@@ -1,13 +1,14 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-class RedditBrowser extends React.Component {
+class RedditView extends React.Component {
   componentDidMount() {
-    this.props.refreshSubreddit(this.props.selectedId)
+    this.props.refreshSubreddit(this.props.selectedSubredditId)
   }
 
   render() {
     return <div>
+      <h3>Explore Reddit posts</h3>
       <div>
         Available subreddits:
 
@@ -30,7 +31,7 @@ class RedditBrowser extends React.Component {
     return <a href="#"
       style={{
         margin: "0 5px 0 5px",
-        fontWeight: (id === this.props.selectedId ? "bold" : "normal")
+        fontWeight: (id === this.props.selectedSubredditId ? "bold" : "normal")
       }}
       onClick={(e) => {
         e.preventDefault()
@@ -40,8 +41,8 @@ class RedditBrowser extends React.Component {
   }
 
   renderThisSubreddit() {
-    let id = this.props.selectedId
-    let subreddit = this.props.dataBySubreddit[id]
+    let id = this.props.selectedSubredditId
+    let subreddit = this.props.subreddits[id]
 
     return <div>
       <div style={{fontSize: "130%"}}>{id}</div>
@@ -53,10 +54,10 @@ class RedditBrowser extends React.Component {
   renderRefreshLink(id, subreddit) {
     if (!subreddit) return "Loading..."
 
-    switch (subreddit.status) {
-      case "loading":
+    switch (subreddit.postsRequest) {
+      case "started":
         return "Loading..."
-      case "loaded":
+      case "success":
       case "failure":
         return <a href="#"
           onClick={(e) => {
@@ -64,24 +65,24 @@ class RedditBrowser extends React.Component {
             this.props.refreshSubreddit(id)
           }}
         >refresh</a>
-      default: throw(`Unknown status: ${subreddit.status}`)
+      default: throw(`Unknown postsRequest status: ${subreddit.postsRequest}`)
     }
   }
 
   renderPostsList(subreddit) {
     if (!subreddit) return ""
 
-    switch (subreddit.status) {
-      case "loading":
+    switch (subreddit.postsRequest) {
+      case "started":
         return <div>...</div>
-      case "loaded":
+      case "success":
         return <div>
           <div>Last updated: {subreddit.lastUpdated}</div>
           {subreddit.posts.map((post) => this.renderPost(post))}
         </div>
       case "failure":
         return <div style={{color: "red"}}>Error loading posts. Try refreshing.</div>
-      default: throw(`Unknown status: ${subreddit.status}`)
+      default: throw(`Unknown postsRequest status: ${subreddit.postsRequest}`)
     }
   }
 
@@ -101,11 +102,11 @@ class RedditBrowser extends React.Component {
   }
 }
 
-RedditBrowser.propTypes = {
-  selectedId: PropTypes.string.isRequired,
-  dataBySubreddit: PropTypes.object.isRequired,
+RedditView.propTypes = {
+  selectedSubredditId: PropTypes.string.isRequired,
+  subreddits: PropTypes.object.isRequired,
   selectSubreddit: PropTypes.func.isRequired,
   refreshSubreddit: PropTypes.func.isRequired
 }
 
-export default RedditBrowser
+export default RedditView

@@ -23,7 +23,7 @@ defmodule JWTWeb.RequestLogger do
 
         # Log any important session data eg. logged-in user
         user = conn.assigns[:current_user]
-        user_string = if user, do: "#{user.id} (#{user.name})", else: "(none)"
+        user_string = if user, do: "#{user.id} (#{user.email})", else: "(none)"
 
         # Note redirect, if any
         redirect = Plug.Conn.get_resp_header(conn, "location")
