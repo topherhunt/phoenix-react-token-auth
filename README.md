@@ -1,5 +1,11 @@
 # TokenAuth
 
+This is a sample app demonstrating a token-auth-restricted Phoenix API consumed by a simple React SPA.
+
+I experimented with Redux and Thunk for managing state, but I found it added an enormous amount of code complexity & layering for minimal benefit. It seems state is easier to reason about when it's kept local as much as possible. You can check out the Redux spike on the `redux` branch. See also my [Redux cheatsheet](https://github.com/topherhunt/cheatsheets/blob/master/js/redux.md).
+
+---
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
