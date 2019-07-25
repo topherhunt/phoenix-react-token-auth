@@ -1,4 +1,4 @@
-defmodule Jwt.DataCase do
+defmodule TokenAuth.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule Jwt.DataCase do
 
   using do
     quote do
-      alias Jwt.Repo
+      alias TokenAuth.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Jwt.DataCase
+      import TokenAuth.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Jwt.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(TokenAuth.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Jwt.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(TokenAuth.Repo, {:shared, self()})
     end
 
     :ok

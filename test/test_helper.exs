@@ -1,2 +1,2 @@
 ExUnit.start()
-Ecto.Adapters.SQL.Sandbox.mode(Jwt.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(TokenAuth.Repo, :manual)

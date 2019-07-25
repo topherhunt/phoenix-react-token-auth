@@ -1,4 +1,4 @@
-defmodule Jwt.Repo.Migrations.CreateUsers do
+defmodule TokenAuth.Repo.Migrations.CreateUsers do
   use Ecto.Migration
 
   def change do

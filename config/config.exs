@@ -7,15 +7,15 @@
 # General application configuration
 use Mix.Config
 
-config :jwt,
-  ecto_repos: [Jwt.Repo]
+config :token_auth,
+  ecto_repos: [TokenAuth.Repo]
 
 # Configures the endpoint
-config :jwt, JwtWeb.Endpoint,
+config :token_auth, TokenAuthWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "2qsaqwxdpAC5oCHYiDNUMKuPVOq3GVD0RRUhKpCKPYwWAgnsByJdL82Dh0ZcbCBS",
-  render_errors: [view: JwtWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Jwt.PubSub, adapter: Phoenix.PubSub.PG2]
+  render_errors: [view: TokenAuthWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: TokenAuth.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,

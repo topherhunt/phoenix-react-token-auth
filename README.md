@@ -1,4 +1,4 @@
-# Jwt
+# TokenAuth
 
 To start your Phoenix server:
 

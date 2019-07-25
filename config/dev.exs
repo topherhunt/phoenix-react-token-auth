@@ -1,10 +1,10 @@
 use Mix.Config
 
 # Configure your database
-config :jwt, Jwt.Repo,
+config :token_auth, TokenAuth.Repo,
   username: "postgres",
   password: "postgres",
-  database: "jwt_dev",
+  database: "token_auth_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,7 +15,7 @@ config :jwt, Jwt.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :jwt, JwtWeb.Endpoint,
+config :token_auth, TokenAuthWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -57,13 +57,13 @@ config :jwt, JwtWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :jwt, JwtWeb.Endpoint,
+config :token_auth, TokenAuthWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|scss|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/jwt_web/{live,views}/.*(ex)$",
-      ~r"lib/jwt_web/templates/.*(eex)$"
+      ~r"lib/token_auth_web/{live,views}/.*(ex)$",
+      ~r"lib/token_auth_web/templates/.*(eex)$"
     ]
   ]
 
