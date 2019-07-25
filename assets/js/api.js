@@ -1,9 +1,9 @@
 // Helper for making requests to my api.
-// Note that it uses `fetch`, decodes the json for you, and will throw on 5** responses.
+// It uses `fetch`, decodes the json for you, and will throw on 5** responses.
 export const makeApiRequest = (method, path, json) => {
   let token = localStorage.getItem("authToken")
   let headers = new Headers()
-  headers.append("Content-Type", "application/json") // tell the api to parse the json body
+  headers.append("Content-Type", "application/json")
   if (token) headers.append("Authorization", "Bearer "+token)
 
   let opts = {method: method, headers: headers}
