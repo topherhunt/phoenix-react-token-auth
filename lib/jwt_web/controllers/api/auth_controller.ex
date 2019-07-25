@@ -6,12 +6,12 @@ defmodule JwtWeb.Api.AuthController do
     case Accounts.authenticate_user(email, password) do
       {:ok, user} ->
         token = Accounts.new_token_for_user(user)
-        json(conn, %{"ok" => true, "token" => token})
+        json(conn, %{ok: true, token: token})
 
       {:error, reason} ->
         conn
         |> put_status(401)
-        |> json(%{"ok" => false, "message" => login_failure_message(reason)})
+        |> json(%{ok: false, message: login_failure_message(reason)})
     end
   end
 
@@ -19,13 +19,12 @@ defmodule JwtWeb.Api.AuthController do
     case Accounts.insert_user(user_params) do
       {:ok, user} ->
         token = Accounts.new_token_for_user(user)
-        json(conn, %{"ok" => true, "token" => token})
+        json(conn, %{ok: true, token: token})
 
       {:error, changeset} ->
-        IO.puts "error."
         conn
         |> put_status(422)
-        |> json(%{"ok" => false, "message" => registration_failure_message(changeset)})
+        |> json(%{ok: false, message: registration_failure_message(changeset)})
     end
   end
 
